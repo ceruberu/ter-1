@@ -12,6 +12,7 @@ class AppComponent extends React.Component {
   	this.state = {
   		typeOfUser : null  //  null, buyer 아니면 seller, seller면 sellerComponent, null 은 로그인 하기 전 
   	} 
+
   }
   render() {
     return (
