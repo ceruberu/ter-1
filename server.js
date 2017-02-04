@@ -3,11 +3,23 @@
 require('core-js/fn/object/assign');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const configs = require('./webpack.config');
+const config = require('./webpack.config');
 const open = require('open');
 const express = require('express');
-const config = configs[0];
-const env = configs[1];
+
+const args = require('minimist')(process.argv.slice(2));
+
+let env;
+if (args._.length > 0 && args._.indexOf('start') !== -1) {
+  env = 'test';
+} else if (args.env) {
+  env = args.env;
+} else {
+  env = 'dev';
+}
+
+// const config = configs[0];
+// const env = configs[1];
 
 /**
  * Flag indicating whether webpack compiled for the first time.
@@ -41,6 +53,10 @@ const env = configs[1];
       isInitialCompilation = false;
     });
  } else {
+
+    let isInitialCompilation = true;
+
+    const compiler = webpack(config);
    var  app = express();
    console.log('express!!');
  }

@@ -29,4 +29,4 @@ function buildConfig(wantedEnv) {
   return config;
 }
 
-module.exports = [buildConfig(env),env];
+module.exports = buildConfig(env);
